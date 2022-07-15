@@ -1,8 +1,7 @@
 #### 목차
 
 - [React](#react)
-  * [1. Redux](#1-redux)
-    + [1-1. Redux Toolkit](#1-1-Redux Toolkit)
+  * [1. Redux Toolkit](#1-redux-toolkit)
   * [출처](#출처)
 
 # React
