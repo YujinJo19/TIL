@@ -8,6 +8,9 @@
     + [2-1. JWT 구조](#2-1-jwt-구조)
     + [2-2. JWT 인증 순서](#2-2-jwt-인증-순서)
     + [2-3. JWT 장단점](#2-3-jwt-장단점)
+  * [3. Refresh Token](#3-refresh-token)
+    + [3-1. Refresh Token](#3-1-refresh-token)
+    + [3-2. 재발급 원리](#3-2-재발급-원리)
   * [출처](#출처)
 
 
@@ -115,8 +118,33 @@
 
   - 토큰을 탈취당하면 대처하기 어려움
 
-    
+
+
+
+## 3. Refresh Token
+
+### 3-1. Refresh Token
+
+- Access Token 만을 사용하게 되면 제 3자에게 탈취당할 경우 보안에 취약하다는 단점이 있음
+- Access Token이 만료되기 전까지는 토큰을 획득한 사람이라면 권한 접근이 가능해지기 때문
+- Refresh Token은 재발급에 관여하는 토큰
+- 서버는 데이터베이스에 Refresh token을 저장하고 클라이언트는 Access Token과 Refresh Token을 쿠키, 세션 혹은 웹스토리지에 저장하고 요청이 있을 때마다 헤더에 담아 보냄
+- 긴 유효기간을 지니면서 동시에 Access Token이 만료됐을 때 재발급해주는 열쇠가 됨
+- 만료된 Access Token을 서버에 보내면 Refresh Token을 DB에 있는 것과 비교해 일치할 경우 다시 Access Token을 재발급해줌
+
+
+
+### 3-2. 재발급 원리
+
+- 로그인 시 Access Token과 Refresh Token을 모두 발급
+- 토큰을 검사함과 동시에 토큰의 유효기간을 확인하여 재발급 여부를 결정
+- 로그아웃을 하면 Access Token과 Refresh Token을 모두 만료시킴
+
+
+
+
 
 ## 출처
 
 - https://inpa.tistory.com/entry/WEB-%F0%9F%93%9A-JWTjson-web-token-%EB%9E%80-%F0%9F%92%AF-%EC%A0%95%EB%A6%AC
+- https://inpa.tistory.com/entry/WEB-%F0%9F%93%9A-Access-Token-Refresh-Token-%EC%9B%90%EB%A6%AC-feat-JWT
